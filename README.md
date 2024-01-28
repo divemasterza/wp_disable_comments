@@ -8,7 +8,6 @@ The Disable Comments Plugin is a WordPress plugin designed to comprehensively di
 
 - Disables support for comments and trackbacks in all post types.
 - Closes comments on the front-end.
-- Hides existing comments.
 - Removes the comments page from the WordPress admin menu.
 - Redirects any user trying to access the comments page.
 - Removes the comments metabox from the WordPress dashboard.
