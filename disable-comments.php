@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Plugin Name: Disable Comments Plugin
- * Description: A simple plugin to disable comments and trackbacks in all post types.
- * Version: 1.0
+ * Plugin Name: Disable Comments Plugin - Multisite Compatible
+ * Description: A simple plugin to disable comments and trackbacks in all post types, compatible with multisite for individual site activation.
+ * Version: 1.1
  * Author: Steph Reinstein
  * Author URI: https://bigambitions.co.za
  */
@@ -11,11 +11,9 @@
 // Function to delete all existing comments
 function delete_all_existing_comments()
 {
-    $comments = get_comments(array('number' => 0));
-    if (is_array($comments)) {
-        foreach ($comments as $comment) {
-            wp_delete_comment($comment->comment_ID, true);
-        }
+    $comments = get_comments(['number' => 0]);
+    foreach ($comments as $comment) {
+        wp_delete_comment($comment->comment_ID, true);
     }
 }
 
@@ -46,8 +44,7 @@ add_filter('pings_open', 'disable_comments_status', 20, 2);
 // Hide existing comments
 function disable_comments_hide_existing_comments($comments)
 {
-    $comments = array();
-    return $comments;
+    return array(); // Returning an empty array
 }
 add_filter('comments_array', 'disable_comments_hide_existing_comments', 10, 2);
 
@@ -63,7 +60,7 @@ function disable_comments_admin_menu_redirect()
 {
     global $pagenow;
     if ($pagenow === 'edit-comments.php') {
-        wp_redirect(admin_url());
+        wp_redirect(admin_url()); // Redirect to the admin dashboard
         exit;
     }
 }
